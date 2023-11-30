@@ -12,6 +12,7 @@ import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import sequelize from './config/database.js';
 import routes from './routes/index.js';
+import { study } from './app2.js';
 
 const app = express();
 const __filename = fileURLToPath(import.meta.url);
@@ -94,3 +95,5 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+
+study();

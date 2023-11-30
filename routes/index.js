@@ -8,8 +8,31 @@
 
 import express from 'express';
 import User from '../models/user.js';
+import { knn_predict_online } from '../app2.js';
 
 const router = express.Router();
+
+//计算结果
+router.post('/api/predict', async (req, res, next) => {
+  try {
+    const { result14, _e } = req.body;
+    const { prediction } = knn_predict_online(result14, _e);
+    res.json(
+      {
+        success: true, 
+        prediction
+      }
+    );
+  } catch (error) {
+    res.json(
+      {
+        success: false
+      }
+    );
+    next(error);
+  }
+})
+
 
 // 创建用户
 router.post('/api/create-user', async (req, res, next) => {

@@ -1,0 +1,54 @@
+2023-11-29 22:26:21 [error]: Something went wrong!
+TypeError: Cannot read properties of undefined (reading 'get_feature')
+    at knn_predict_online (file:///Users/mason/workspace/statistic/app2.js:216:24)
+    at file:///Users/mason/workspace/statistic/routes/index.js:19:28
+    at Layer.handle [as handle_request] (/Users/mason/workspace/statistic/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/mason/workspace/statistic/node_modules/express/lib/router/route.js:144:13)
+    at Route.dispatch (/Users/mason/workspace/statistic/node_modules/express/lib/router/route.js:114:3)
+    at Layer.handle [as handle_request] (/Users/mason/workspace/statistic/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/mason/workspace/statistic/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/Users/mason/workspace/statistic/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/mason/workspace/statistic/node_modules/express/lib/router/index.js:280:10)
+    at Function.handle (/Users/mason/workspace/statistic/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/mason/workspace/statistic/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/mason/workspace/statistic/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/mason/workspace/statistic/node_modules/express/lib/router/index.js:328:13)
+    at /Users/mason/workspace/statistic/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/mason/workspace/statistic/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/mason/workspace/statistic/node_modules/express/lib/router/index.js:280:10)
+2023-11-29 22:28:54 [error]: Something went wrong!
+TypeError: Cannot read properties of undefined (reading 'get_feature')
+    at knn_predict_online (file:///Users/mason/workspace/statistic/app2.js:216:24)
+    at file:///Users/mason/workspace/statistic/routes/index.js:19:28
+    at Layer.handle [as handle_request] (/Users/mason/workspace/statistic/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/mason/workspace/statistic/node_modules/express/lib/router/route.js:144:13)
+    at Route.dispatch (/Users/mason/workspace/statistic/node_modules/express/lib/router/route.js:114:3)
+    at Layer.handle [as handle_request] (/Users/mason/workspace/statistic/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/mason/workspace/statistic/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/Users/mason/workspace/statistic/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/mason/workspace/statistic/node_modules/express/lib/router/index.js:280:10)
+    at Function.handle (/Users/mason/workspace/statistic/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/mason/workspace/statistic/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/mason/workspace/statistic/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/mason/workspace/statistic/node_modules/express/lib/router/index.js:328:13)
+    at /Users/mason/workspace/statistic/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/mason/workspace/statistic/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/mason/workspace/statistic/node_modules/express/lib/router/index.js:280:10)
+2023-11-29 22:30:06 [error]: Something went wrong!
+ReferenceError: 打印最近的训练数据 is not defined
+    at knn_predict_online (file:///Users/mason/workspace/statistic/app2.js:222:3)
+    at file:///Users/mason/workspace/statistic/routes/index.js:19:28
+    at Layer.handle [as handle_request] (/Users/mason/workspace/statistic/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/mason/workspace/statistic/node_modules/express/lib/router/route.js:144:13)
+    at Route.dispatch (/Users/mason/workspace/statistic/node_modules/express/lib/router/route.js:114:3)
+    at Layer.handle [as handle_request] (/Users/mason/workspace/statistic/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/mason/workspace/statistic/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/Users/mason/workspace/statistic/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/mason/workspace/statistic/node_modules/express/lib/router/index.js:280:10)
+    at Function.handle (/Users/mason/workspace/statistic/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/mason/workspace/statistic/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/mason/workspace/statistic/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/mason/workspace/statistic/node_modules/express/lib/router/index.js:328:13)
+    at /Users/mason/workspace/statistic/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/mason/workspace/statistic/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/mason/workspace/statistic/node_modules/express/lib/router/index.js:280:10)
