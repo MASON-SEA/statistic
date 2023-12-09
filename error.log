@@ -52,3 +52,39 @@ ReferenceError: 打印最近的训练数据 is not defined
     at /Users/mason/workspace/statistic/node_modules/express/lib/router/index.js:286:9
     at Function.process_params (/Users/mason/workspace/statistic/node_modules/express/lib/router/index.js:346:12)
     at next (/Users/mason/workspace/statistic/node_modules/express/lib/router/index.js:280:10)
+2023-11-30 22:11:11 [error]: Something went wrong!
+ReferenceError: nearest is not defined
+    at knn_predict_online (file:///D:/work_space/statistic/app2.js:241:24)
+    at file:///D:/work_space/statistic/routes/index.js:19:37
+    at Layer.handle [as handle_request] (D:\work_space\statistic\node_modules\express\lib\router\layer.js:95:5)
+    at next (D:\work_space\statistic\node_modules\express\lib\router\route.js:144:13)
+    at Route.dispatch (D:\work_space\statistic\node_modules\express\lib\router\route.js:114:3)
+    at Layer.handle [as handle_request] (D:\work_space\statistic\node_modules\express\lib\router\layer.js:95:5)
+    at D:\work_space\statistic\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (D:\work_space\statistic\node_modules\express\lib\router\index.js:346:12)
+    at next (D:\work_space\statistic\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (D:\work_space\statistic\node_modules\express\lib\router\index.js:175:3)
+    at router (D:\work_space\statistic\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (D:\work_space\statistic\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (D:\work_space\statistic\node_modules\express\lib\router\index.js:328:13)
+    at D:\work_space\statistic\node_modules\express\lib\router\index.js:286:9
+    at Function.process_params (D:\work_space\statistic\node_modules\express\lib\router\index.js:346:12)
+    at next (D:\work_space\statistic\node_modules\express\lib\router\index.js:280:10)
+2023-11-30 22:11:50 [error]: Something went wrong!
+ReferenceError: nearest is not defined
+    at knn_predict_online (file:///D:/work_space/statistic/app2.js:241:24)
+    at file:///D:/work_space/statistic/routes/index.js:19:37
+    at Layer.handle [as handle_request] (D:\work_space\statistic\node_modules\express\lib\router\layer.js:95:5)
+    at next (D:\work_space\statistic\node_modules\express\lib\router\route.js:144:13)
+    at Route.dispatch (D:\work_space\statistic\node_modules\express\lib\router\route.js:114:3)
+    at Layer.handle [as handle_request] (D:\work_space\statistic\node_modules\express\lib\router\layer.js:95:5)
+    at D:\work_space\statistic\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (D:\work_space\statistic\node_modules\express\lib\router\index.js:346:12)
+    at next (D:\work_space\statistic\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (D:\work_space\statistic\node_modules\express\lib\router\index.js:175:3)
+    at router (D:\work_space\statistic\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (D:\work_space\statistic\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (D:\work_space\statistic\node_modules\express\lib\router\index.js:328:13)
+    at D:\work_space\statistic\node_modules\express\lib\router\index.js:286:9
+    at Function.process_params (D:\work_space\statistic\node_modules\express\lib\router\index.js:346:12)
+    at next (D:\work_space\statistic\node_modules\express\lib\router\index.js:280:10)

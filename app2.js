@@ -1,7 +1,7 @@
 /*
  * @Date: 2023-11-23 10:34:54
  * @LastEditors: mason
- * @LastEditTime: 2023-11-25 17:29:47
+ * @LastEditTime: 2023-12-05 22:06:26
  * @FilePath: \statistic\app2.js
  */
 
@@ -9,34 +9,24 @@ import KNN from 'ml-knn';
 import ExcelJS from 'exceljs';
 const k = 23;
 let knn = null;
-const test_count = 50;
+const test_count = 10;
 const is_debugger = true;
 let data = [];
 let element = {};
 let feature = [];
 let label = [];
+//read excel
+// 你的Excel文件路径
+const excelFilePath = '训练集.xlsx';
 
 
 console.log('k---------', k);
 
-
 function knn_learning(features, labels) {
-  // // 数据预处理
-  // const features = [
-  //   [5, 1, 6, 8, 5],
-  //   [5, 1, 6, 7, 4],
-  //   [5, 1, 6, 6, 3],
-  //   [5, 1, 0, 8, 5],
-  //   [5, 1, 6, 5, 3],
-  //   [5, 1, 6, 2, 0]
-  // ]
-  // const labels = ['A', 'B', 'C', 'C', 'C', 'C'];
-
   // 创建K近邻模型
   knn = new KNN(features, labels, { k });
 
 }
-
 
 const knn_predict = (new_data) => {
 
@@ -55,38 +45,38 @@ const knn_predict = (new_data) => {
     newSample.push(_v);
   });
 
-
   const prediction = knn.predict(newSample);
   // 找到最近的几条训练数据的索引
   const nearestIndices = knn.kdTree.nearest(newSample, k);
 
   // 打印最近的训练数据
-  console.log(`Nearest ${k} training data points:`);
-  nearestIndices.forEach((index, item) => {
-    console.log(`item: ${index}, item: ${item}`);
-  });
+  // console.log(`Nearest ${k} training data points:`);
+  // const data = [];
+
+  // nearestIndices.forEach((item) => {
+  //     const _data = find_data(item[0]);
+  //     data.push(..._data);
+  // });
+
+  // console.log('data:',data)
 
   return { prediction, result28 };
 };
 
 const find_data = (key) => {
-
-  for (let i = 0; i < key.length; i++) {
-    const array = [];
-    for (let j = feature.length; j > 0; j--) {
-      const f = feature[j];
-    
+  const _data = [];
+  outerLoop: for (let i = 0; i < feature.length; i++) {
+    const f = feature[i];
+    innerLoop: for (let j = 0; j < key.length - 1; j++) {
+      if (f[j] != key[j]) {
+        continue outerLoop
+      }
     }
+    _data.push(data[i]);
   }
-  
 
-
-
+  return _data;
 };
-
-//read excel
-// 你的Excel文件路径
-const excelFilePath = '训练集.xlsx';
 
 // 创建一个工作簿对象
 const workbook = new ExcelJS.Workbook();
@@ -96,7 +86,6 @@ export const study = () => {
   workbook.xlsx.readFile(excelFilePath)
     .then(() => {
       const worksheet = workbook.getWorksheet('Sheet1');
-      let data = [];
       worksheet.eachRow({ includeEmpty: true }, function (row, rowNumber) {
         if (rowNumber == 1) return;
 
@@ -226,7 +215,7 @@ const get_feature = (result14, _e) => {
   feature.push(b);
 
   Object.keys(element).forEach((key) => {
-    let _v = _e.hasOwnProperty(key) ? parseFloat(_e[key]) : 0;
+    let _v = _e.hasOwnProperty(key) ? parseFloat(_e[key]) * 1 : 0;
     feature.push(_v);
   });
   return feature
@@ -239,14 +228,17 @@ export const knn_predict_online = (result14, _e) => {
   // 找到最近的几条训练数据的索引
   const nearestIndices = knn.kdTree.nearest(newSample, k);
 
-  // 打印最近的训练数据
-  // console.log(`Nearest ${k} training data points:`);
-  // nearestIndices.forEach((index, item) => {
-  //   console.log(`item: ${index}`);
-  // });
+  const data = [];
+
+  nearestIndices.forEach((item) => {
+      const _data = find_data(item[0]);
+      data.push(..._data);
+  });
 
 
-  return { prediction };
+
+  return { prediction, nearest: data };
 }
-
-study();
+if(is_debugger) {
+  study()
+}

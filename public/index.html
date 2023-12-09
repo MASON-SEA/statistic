@@ -34,9 +34,10 @@
         });
 
         const data = await response.json();
-        const { prediction } = data;
+        const { prediction, nearest } = data;
         show_text.innerHTML = prediction;
 
+        console.log('nearest', nearest);
         console.log('Response:', data);
       } catch (error) {
         console.error('Error:', error);

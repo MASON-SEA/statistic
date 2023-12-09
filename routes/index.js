@@ -16,11 +16,12 @@ const router = express.Router();
 router.post('/api/predict', async (req, res, next) => {
   try {
     const { result14, _e } = req.body;
-    const { prediction } = knn_predict_online(result14, _e);
+    const { prediction, nearest } = knn_predict_online(result14, _e);
     res.json(
       {
         success: true, 
-        prediction
+        prediction,
+        nearest
       }
     );
   } catch (error) {
