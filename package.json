@@ -3,10 +3,17 @@
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
-  "type": "module",
+  "bin": "app.js",
+  "pkg": {
+    "name": "statistic",
+    "targets": ["node16-win-x64"],
+    "assets": ["public/**/*"],
+    "main": "app.js"
+  },
   "scripts": {
     "start": "node app.js",
-    "study": "node app2.js"
+    "study": "node app2.js",
+    "build": "pkg package.json"
   },
   "repository": {
     "type": "git",

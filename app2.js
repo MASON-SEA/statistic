@@ -1,12 +1,12 @@
 /*
  * @Date: 2023-11-23 10:34:54
  * @LastEditors: mason
- * @LastEditTime: 2023-12-05 22:06:26
+ * @LastEditTime: 2023-12-10 23:48:03
  * @FilePath: \statistic\app2.js
  */
+const KNN = require('ml-knn');
+const ExcelJS = require('exceljs');
 
-import KNN from 'ml-knn';
-import ExcelJS from 'exceljs';
 const k = 23;
 let knn = null;
 const test_count = 50;
@@ -81,7 +81,7 @@ const find_data = (key) => {
 // 创建一个工作簿对象
 const workbook = new ExcelJS.Workbook();
 
-export const study = () => {
+const study = () => {
   // 读取Excel文件
   workbook.xlsx.readFile(excelFilePath)
     .then(() => {
@@ -221,7 +221,7 @@ const get_feature = (result14, _e) => {
   return feature
 };
 
-export const knn_predict_online = (result14, _e) => {
+const knn_predict_online = (result14, _e) => {
   let newSample = get_feature(result14, _e);
 
   const prediction = knn.predict(newSample);
@@ -242,3 +242,5 @@ export const knn_predict_online = (result14, _e) => {
 if(is_debugger) {
   study()
 }
+
+module.exports = { knn_predict_online, study };
