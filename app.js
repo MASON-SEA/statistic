@@ -78,6 +78,11 @@ syncDatabase();
 // 配置Express中间件
 app.use(express.json());
 
+// app.use(function(req, res, next) {  
+//   res.setHeader('Content-Type', 'application/javascript'); // 或者其他适合的MIME类型  
+//   next();  
+// });  
+
 // 设置express.static以提供HTML文件
 // app.use(express.static(dirname(__dirname) + '/public'));
 app.use('/', express.static('public'))

@@ -2,25 +2,66 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Express Sequelize SQLite</title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.6.2/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap-table/1.22.1/bootstrap-table.css" rel="stylesheet">
+  <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.6.2/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/bootstrap-table/1.22.1/bootstrap-table.min.js"></script>
+  <script src="/echarts.js"></script>
+  <style>
+    body {
+      width: 100vw;
+      height: 100vh;
+      padding: 16px;
+      box-sizing: border-box;
+      margin: 0;
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+
+    #main {
+      width: 100%;
+      height: 80%;
+    }
+    #show {
+      display: none;
+      margin-bottom: 16px;
+    }
+  </style>
+  <title>预测模型</title>
 </head>
+
 <body>
-  <h1 id="show"></h1>
-  <label>14天结果：<input id='result14'/></label>
-  <label>结构：<input id='_e'/></label>
-  <button id="createUserButton">预测</button>
+  <button id="show" type="button" class="btn btn-primary btn-lg">
+    预测结果 <span id="show_text" class="badge badge-light">4</span>
+  </button>
+  <form>
+    <div class="form-row">
+      <div class="col">
+        <input type="text" class="form-control" placeholder="14天结果" id="result14">
+      </div>
+      <div class="col">
+        <input type="text" class="form-control" placeholder="结构" id="_e">
+      </div>
+      <div class="col">
+        <button id="predict" type="button" class="btn btn-secondary">预测</button>
+      </div>
+    </div>
+  </form>
+  <div id="main"></div>
+  <table id="table"></table>
 
   <script>
-    const createUserButton = document.getElementById('createUserButton');
-    const show_text = document.getElementById('show');
-    
-    
-
-    createUserButton.addEventListener('click', async () => {
+    var PREDICT = {};
+    const predict = document.getElementById('predict');
+    const show = document.getElementById('show');
+    const show_text = document.getElementById('show_text');
+    predict.addEventListener('click', async () => {
       const result14 = document.getElementById('result14').value;
       const _e = document.getElementById('_e').value;
 
@@ -35,7 +76,31 @@
 
         const data = await response.json();
         const { prediction, nearest } = data;
+
+        //处理分类
+        show.style.display = 'block';
         show_text.innerHTML = prediction;
+
+        PREDICT = {};
+        nearest.forEach(element => {
+          const key = element[3];
+          if (!PREDICT[key]) {
+            PREDICT[key] = [];
+          }
+          PREDICT[key].push(element);
+        });
+
+        let _data = [];
+        Object.keys(PREDICT).forEach(key => {
+          _data.push({
+            name: key,
+            value: PREDICT[key].length,
+          });
+        });
+
+        draw_pie(_data);
+        draw_table(nearest);
+
 
         console.log('nearest', nearest);
         console.log('Response:', data);
@@ -44,5 +109,97 @@
       }
     });
   </script>
+
+  <script>
+    var myChart;
+    function draw_pie(data = []) {
+      var chartDom = document.getElementById('main');
+      if (!myChart) {
+        myChart = echarts.init(chartDom);
+        myChart.on('click', function (params) {
+          const name = params.name;
+          const data = PREDICT[name];
+          draw_table(data);
+        });
+      }
+      var option;
+      option = {
+        legend: {
+          top: 'bottom'
+        },
+        tooltip: {
+          trigger: 'item',
+          formatter: '{a} <br/>{b} : {c} ({d}%)'
+        },
+        toolbox: {
+          show: true,
+          feature: {
+            mark: { show: true },
+            dataView: { show: true, readOnly: false },
+            // restore: { show: true },
+            saveAsImage: { show: true }
+          }
+        },
+        series: [
+          {
+            name: '28天预测结果',
+            type: 'pie',
+            radius: [50, 250],
+            center: ['50%', '50%'],
+            roseType: 'radius',
+            itemStyle: {
+              borderRadius: 8
+            },
+            label: {
+              show: false
+            },
+            emphasis: {
+              label: {
+                show: true
+              }
+            },
+            data
+          }
+        ]
+      };
+
+      option && myChart.setOption(option);
+    }
+
+    function draw_table(data) {
+      const table_data = data.map(item => {
+        return {
+          name: item[0],
+          result14: item[1],
+          elements: JSON.stringify(item[2]),
+          result28: item[3]
+        }
+      })
+
+      $('#table').bootstrapTable({
+        columns: [
+          {
+            field: 'name',
+            title: '名称'
+          }, {
+            field: 'result14',
+            title: '14天结果'
+          }, {
+            field: 'elements',
+            title: '结构'
+          },
+          {
+            field: 'result28',
+            title: '结果'
+          }
+        ],
+        data: []
+      })
+
+      $('#table').bootstrapTable('load', table_data);
+    }
+
+  </script>
 </body>
+
 </html>
